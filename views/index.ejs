@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Feed</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <img src="/logo.png" class="logo" />
+      <div class="userContainner">
+        <div class="user">
+          <% if(user){%> <%=user.username%>
+          <a href="/logout"><button class="logout-btn">LogOut</button></a>
+          <%}else{%>
+          <a href="/login">Login</a>
+
+          <%}%>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <form action="/posts" method="POST" enctype="multipart/form-data">
+        <label for="text">Post Content:</label>
+        <textarea id="text" name="text" rows="4" required></textarea>
+
+        <label for="image">Upload Image (optional):</label>
+        <input type="file" id="image" name="image" accept="image/*" />
+
+        <button type="submit">Submit Post</button>
+      </form>
+    </div>
+    <div class="container">
+      <% posts.forEach(post => { %>
+      <div class="post">
+        <div class="post-user">
+          <img
+            src="/uploads/defaultpfp.jpg"
+            alt="User Avatar"
+            width="50"
+            height="50"
+            class="post-avatar"
+          />
+          <h3 class="post-username"><%= post.author%></h3>
+
+          <div class="post-more">
+            <div class="post-action">
+              <form action="/posts/delete/<%= post._id%>" method="post">
+                <button type="submit">
+                  Delete <i class="fa fa-trash"></i>
+                </button>
+              </form>
+            </div>
+
+            <div class="post-action">
+              <a href="/posts/edit/<%= post._id%>">
+                <button type="submit">Edit <i class="fa fa-edit"></i></button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="post-content">
+          <p><%= post.caption %></p>
+          <% if (post.image) { %>
+          <img class="post-image" src="<%= post.image %>" alt="Post Image" />
+          <% } %>
+        </div>
+        <div class="fake-section">
+          <span>
+            <i class="post-icon fa fa-thumbs-up" style="font-size: 36px"></i>
+            <%= post.likes || 10 %> Likes</span
+          >
+          <span>
+            <i class="post-icon fa fa-comments" style="font-size: 36px"></i> <%=
+            post.comments || 3 %> Comments</span
+          >
+          <span>
+            <i class="post-icon fa fa-share-square" style="font-size: 36px"></i>
+            <%= post.shares || 0 %> Shares
+          </span>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </body>
+</html>

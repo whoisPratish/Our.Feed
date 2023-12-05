@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OurFeed - Connect with Your Friends and Family</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: rgb(0, 44, 83);
+        background: linear-gradient(
+          354deg,
+          rgba(0, 44, 83, 1) 0%,
+          rgba(0, 0, 0, 1) 75%
+        );
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+      }
+
+      .container {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: max-content;
+      }
+
+      h1 {
+        color: #ffffff;
+      }
+
+      p {
+        color: #a8a8a8;
+      }
+
+      .cta-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: rgb(30, 154, 88);
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 20px;
+      }
+
+      .cta-button:hover {
+        background-color: #155910;
+      }
+      .logo {
+        width: 500px; /* Adjust the size of your logo */
+        height: auto;
+        margin-bottom: 20px;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: right;
+        color: white;
+        height: 150px;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 20px;
+      }
+      .login-btn {
+        padding: 10px 10px 10px;
+        background-color: rgb(46, 131, 131);
+        outline: none;
+        border: none;
+        font-size: 20px;
+        border-radius: 10px;
+        cursor: pointer;
+        color: white;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="userContainner">
+        <div class="user">
+          <% if(user){%> <%=user.username%> <%}else{%>
+          <a href="/login"><button class="login-btn">Login</button></a>
+          <a href="/register">Register</a>
+          <%}%>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <img src="/logo.png" alt="OurFeed Logo" class="logo" />
+
+      <h1>Welcome to OurFeed</h1>
+      <p>
+        Connect with your friends and family on OurFeed. Share moments, photos,
+        and memories with the people you care about.
+      </p>
+      <a href="/feed" class="cta-button">Get Started</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Feed</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Edit the post</h1>
+    </header>
+
+    <div class="container">
+      <form action="/posts/edit/<%= post._id%>" method="POST">
+        <label for="text">Post Content:</label>
+        <textarea id="text" name="text" rows="4" required>
+<%= post.caption%></textarea
+        >
+
+        <button type="submit">Update Post</button>
+      </form>
+      <h1>Current Post:</h1>
+      <div class="post">
+        <div class="post-user">
+          <img
+            src="/uploads/defaultpfp.jpg"
+            alt="User Avatar"
+            width="50"
+            height="50"
+            class="post-avatar"
+          />
+          <h3 class="post-username">Anonymous User</h3>
+        </div>
+        <div class="post-content">
+          <p><%= post.caption %></p>
+          <% if (post.image) { %>
+          <img class="post-image" src="<%= post.image %>" alt="Post Image" />
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
